@@ -8,13 +8,14 @@ data("iris")
 
 # To understand the data, Iris data set, visit:
 # https://www.kaggle.com/uciml/iris
+install.packages("ggplot2", repos = "https://cran.rstudio.com/")
 
 # import the graphics plot library
 library(ggplot2)
 
 
 # plot the info of sepal
-myplotSepal <- ggplot(iris_data, aes(x=SepalLengthCm, y=SepalWidthCm, color=Species)) +
+myplotSepal <- ggplot(iris_data, aes(x=Sepal.length, y=SepalWidthCm, color=Species)) +
   geom_point(size=2) +
   theme_light(base_size=16) + 
   ggtitle("Sepal Width vs. Sepal Length")
