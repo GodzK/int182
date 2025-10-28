@@ -9,6 +9,7 @@
 import pandas as pd
 import numpy as np
 import re
+import joblib
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -122,7 +123,6 @@ summary = pd.DataFrame([{
 print(summary.sort_values(by='accuracy', ascending=False))
 
 # 10. Fine-tune (ตัวอย่างใช้ GridSearch สำหรับ LogisticRegression และ MultinomialNB)
-# (รัน GridSearch อาจใช้เวลานาน ขึ้นกับขนาดข้อมูล)
 param_grid_lr = {
     'tfidf__max_df': [0.8, 0.9],
     'tfidf__min_df': [1, 2],
@@ -234,3 +234,10 @@ if 'LogisticRegression' in best_model_name:
     for f,c in top_pos[:20]:
         print(f, round(c,3))
     print
+# Save model
+joblib.dump(best_model, 'best_model.pkl')
+print("✅ Model saved as best_model.pkl")
+
+# Save label encoder (จำเป็นเวลาโหลดกลับมาใช้)
+joblib.dump(le, 'label_encoder.pkl')
+print("✅ Label encoder saved as label_encoder.pkl")
